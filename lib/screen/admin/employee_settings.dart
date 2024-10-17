@@ -135,7 +135,7 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
             Row(
               children: [
                 // Expand the Dropdown to take available space
@@ -189,7 +189,7 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 40),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -216,7 +216,6 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 ),
               ],
             ),
-            // Save button
             ElevatedButton(
               onPressed: () {
                 // Return the updated settings when the user clicks save

@@ -93,13 +93,13 @@ class _UserDetailPageState extends State<UserDetailPage> {
                   CrossAxisAlignment.center, // Aligns the text to center
               children: [
                 Text(
-                  'Current income: $income || Insentive: ${widget.user.incentive}%',
+                  'Current income: $income || Incentive: ${widget.user.incentive}%',
                   style: TextStyle(fontSize: 14),
                   textAlign: TextAlign.center, // Center-aligns the text
                 ),
                 SizedBox(height: 4), // Adds a small space between the rows
                 Text(
-                  'Current crop assigned: ${widget.user.cropType} || Current daily goal: ${widget.user.curGoal}',
+                  'Crop assigned: ${widget.user.cropType} || Daily goal: ${widget.user.curGoal}',
                   style: TextStyle(fontSize: 14),
                   textAlign: TextAlign.center, // Center-aligns the text
                 ),

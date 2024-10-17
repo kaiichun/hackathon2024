@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_lintramax/main.dart';
+import 'package:hackathon_lintramax/screen/login.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -74,6 +75,19 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: _updateIncomePerKG,
               child: Text('Save'),
             ),
+            SizedBox(height: 10),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: () => {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()))
+                    },
+                child: Text("Logout")),
           ],
         ),
       ),

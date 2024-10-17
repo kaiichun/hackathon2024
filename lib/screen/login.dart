@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_lintramax/main.dart';
 import 'package:hackathon_lintramax/model/user.dart';
 import 'register_screen.dart';
 import 'worker_screen.dart';
@@ -10,35 +11,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController =
-      TextEditingController(text: "admin@example.com");
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // 假设的用户数据
-  final List<UserModel> users = [
-    UserModel(
-      uid: '1',
-      name: 'Admin User',
-      email: 'admin@example.com',
-      role: 'admin',
-      checkedIn: false,
-      checkedOut: false,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-    UserModel(
-      uid: '2',
-      name: 'Worker User',
-      email: 'worker@example.com',
-      role: 'worker',
-      checkedIn: false,
-      checkedOut: false,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-  ];
+  final List<UserModel> users = fakeUsers;
 
   Future<void> _login() async {
     String email = emailController.text;
@@ -67,18 +43,27 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     } else {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('登录失败')));
+          .showSnackBar(SnackBar(content: Text('Login Failed')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
+            Container(
+              margin: const EdgeInsets.only(
+                  top: 170.0, bottom: 70), // Set the margin
+              child: Text(
+                "Welcome",
+                style: TextStyle(
+                  fontSize: 40, // Set the desired font size
+                ),
+              ),
+            ),
             TextField(
               controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
@@ -88,13 +73,26 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            ElevatedButton(onPressed: _login, child: Text('Login')),
-            TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()));
-              },
-              child: const Text("Don't have an account? Sign up"),
+            SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerLeft, // Align to the left
+              child: ElevatedButton(
+                onPressed: _login,
+                child: Text('Login'),
+              ),
+            ),
+            SizedBox(height: 10),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RegisterScreen()));
+                },
+                child: const Text("Don't have an account? Sign up"),
+              ),
             ),
           ],
         ),
