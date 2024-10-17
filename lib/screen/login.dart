@@ -10,56 +10,91 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController =
+      TextEditingController(text: "admin@example.com");
   final TextEditingController passwordController = TextEditingController();
 
   // 假设的用户数据
   final List<UserModel> users = [
-    UserModel(uid: '1', name: 'Admin User', email: 'admin@example.com', role: 'admin'),
-    UserModel(uid: '2', name: 'Worker User', email: 'worker@example.com', role: 'worker'),
+    UserModel(
+      uid: '1',
+      name: 'Admin User',
+      email: 'admin@example.com',
+      role: 'admin',
+      checkedIn: false,
+      checkedOut: false,
+      curGoal: 40,
+      cropType: "Sugarcane",
+      incentive: 3.5,
+    ),
+    UserModel(
+      uid: '2',
+      name: 'Worker User',
+      email: 'worker@example.com',
+      role: 'worker',
+      checkedIn: false,
+      checkedOut: false,
+      curGoal: 40,
+      cropType: "Sugarcane",
+      incentive: 3.5,
+    ),
   ];
 
   Future<void> _login() async {
     String email = emailController.text;
-    String password = passwordController.text; 
+    String password = passwordController.text;
 
-    UserModel? user = users.firstWhere((user) => user.email == email, orElse: () => UserModel(uid: '', name: '', email: '', role: ''));
-    
+    UserModel? user = users.firstWhere((user) => user.email == email,
+        orElse: () => UserModel(
+              uid: '',
+              name: '',
+              email: '',
+              role: '',
+              checkedIn: false,
+              checkedOut: false,
+              curGoal: 40,
+              cropType: "Sugarcane",
+              incentive: 0.0,
+            ));
+
     if (user.role.isNotEmpty) {
-      // 跳转到不同的界面
       if (user.role == 'admin') {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminScreen()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => AdminScreen()));
       } else {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => WorkerScreen()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => WorkerScreen()));
       }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('登录失败')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('登录失败')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('登录')),
+      appBar: AppBar(title: Text('Login')),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: emailController,
-              decoration: InputDecoration(labelText: '邮箱'),
+              decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
               controller: passwordController,
-              decoration: InputDecoration(labelText: '密码'),
+              decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
-            ElevatedButton(onPressed: _login, child: Text('登录')),
+            ElevatedButton(onPressed: _login, child: Text('Login')),
             TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RegisterScreen()));
               },
-              child: Text('没有账户？注册'),
+              child: const Text("Don't have an account? Sign up"),
             ),
           ],
         ),

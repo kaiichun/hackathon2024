@@ -1,5 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_lintramax/model/log_model.dart';
 import 'package:hackathon_lintramax/screen/login.dart';
+
+int incomePerKG = 5;
+int monthlyGoal = 1000;
+
+Map fakeLogs = {
+  "2": [
+    Log(
+        date: DateTime(2024, 1, 1),
+        hours: 8.0,
+        weight: 70.5,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+    Log(
+        date: DateTime(2024, 1, 2),
+        hours: 7.5,
+        weight: 71.0,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+  ],
+  "3": [
+    Log(
+        date: DateTime(2024, 1, 1),
+        hours: 8.0,
+        weight: 70.5,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+    Log(
+        date: DateTime(2024, 1, 2),
+        hours: 7.5,
+        weight: 71.0,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+  ],
+  "4": [
+    Log(
+        date: DateTime(2024, 1, 1),
+        hours: 8.0,
+        weight: 70.5,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+    Log(
+        date: DateTime(2024, 1, 2),
+        hours: 7.5,
+        weight: 71.0,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+  ],
+  "5": [
+    Log(
+        date: DateTime(2024, 1, 1),
+        hours: 8.0,
+        weight: 70.5,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+    Log(
+        date: DateTime(2024, 1, 2),
+        hours: 7.5,
+        weight: 71.0,
+        goalAchieved: true,
+        cropType: "Sugarcane"),
+  ],
+};
 
 void main() {
   runApp(MyApp());
@@ -15,6 +78,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
