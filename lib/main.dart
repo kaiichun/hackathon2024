@@ -1,9 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:hackathon_lintramax/model/log_model.dart';
+import 'package:hackathon_lintramax/model/user.dart';
 import 'package:hackathon_lintramax/screen/login.dart';
 
 int incomePerKG = 5;
 int monthlyGoal = 1000;
+
+List<UserModel> fakeUsers = [
+  UserModel(
+    uid: '1',
+    name: 'Admin User',
+    email: 'admin@example.com',
+    role: 'admin',
+    checkedIn: true,
+    checkedOut: false,
+    curGoal: 40,
+    cropType: "Sugarcane",
+    incentive: 3.5,
+  ),
+  UserModel(
+    uid: '2',
+    name: 'Worker 1',
+    email: 'worker1@example.com',
+    role: 'worker',
+    checkedIn: true,
+    checkedOut: true,
+    curGoal: 40,
+    cropType: "Sugarcane",
+    incentive: 3.5,
+  ),
+  UserModel(
+    uid: '3',
+    name: 'Worker 3',
+    email: 'worker3@example.com',
+    role: 'worker',
+    checkedIn: true,
+    checkedOut: true,
+    curGoal: 40,
+    cropType: "Sugarcane",
+    incentive: 3.5,
+  ),
+  UserModel(
+    uid: '4',
+    name: 'Worker 4',
+    email: 'worker4@example.com',
+    role: 'worker',
+    checkedIn: true,
+    checkedOut: true,
+    curGoal: 40,
+    cropType: "Sugarcane",
+    incentive: 3.5,
+  ),
+  UserModel(
+    uid: '5',
+    name: 'Worker 2',
+    email: 'worker2@example.com',
+    role: 'worker',
+    checkedIn: false,
+    checkedOut: false,
+    curGoal: 40,
+    cropType: "Sugarcane",
+    incentive: 3.5,
+  ),
+];
 
 Map fakeLogs = {
   "2": [

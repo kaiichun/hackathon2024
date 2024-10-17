@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackathon_lintramax/main.dart';
+import 'package:hackathon_lintramax/model/log_model.dart';
 import 'package:hackathon_lintramax/model/user.dart';
 import 'package:hackathon_lintramax/screen/admin/employee_details.dart';
 
@@ -8,63 +10,7 @@ class SearchEmployeePage extends StatefulWidget {
 }
 
 class _SearchEmployeePageState extends State<SearchEmployeePage> {
-  final List<UserModel> users = [
-    UserModel(
-      uid: '1',
-      name: 'Admin User',
-      email: 'admin@example.com',
-      role: 'admin',
-      checkedIn: true,
-      checkedOut: false,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-    UserModel(
-      uid: '2',
-      name: 'Worker 1',
-      email: 'worker@example.com',
-      role: 'worker',
-      checkedIn: true,
-      checkedOut: true,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-    UserModel(
-      uid: '3',
-      name: 'Worker 3',
-      email: 'worker@example.com',
-      role: 'worker',
-      checkedIn: true,
-      checkedOut: true,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-    UserModel(
-      uid: '4',
-      name: 'Worker 4',
-      email: 'worker@example.com',
-      role: 'worker',
-      checkedIn: true,
-      checkedOut: true,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-    UserModel(
-      uid: '5',
-      name: 'Worker 2',
-      email: 'worker@example.com',
-      role: 'worker',
-      checkedIn: false,
-      checkedOut: false,
-      curGoal: 40,
-      cropType: "Sugarcane",
-      incentive: 3.5,
-    ),
-  ];
+  final List<UserModel> users = fakeUsers;
 
   List<UserModel> _filteredUsers = [];
   TextEditingController _searchController = TextEditingController();
@@ -92,6 +38,8 @@ class _SearchEmployeePageState extends State<SearchEmployeePage> {
     super.dispose();
   }
 
+  void onLogsUpdated() {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,14 +65,56 @@ class _SearchEmployeePageState extends State<SearchEmployeePage> {
                       itemCount: _filteredUsers.length,
                       itemBuilder: (context, index) {
                         final user = _filteredUsers[index];
-                        return ListTile(
-                          title: Text(user.name),
-                          subtitle: Text(user.email),
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      UserDetailPage(user: user))),
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8.0), // Add vertical margin
+                          decoration: BoxDecoration(
+                            color: Colors.white, // Background color
+                            borderRadius:
+                                BorderRadius.circular(12.0), // Rounded corners
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(
+                                    0.5), // Shadow color with opacity
+                                spreadRadius: 0.5,
+                                blurRadius: 2,
+                                offset: Offset(0, 2), // Shadow position
+                              ),
+                            ],
+                          ),
+                          child: ListTile(
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                                vertical: 8.0), // Adjust padding
+                            onTap: () async {
+                              if (user.role == 'worker') {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        UserDetailPage(user: user),
+                                  ),
+                                );
+                              }
+                              onLogsUpdated();
+                            },
+                            title: Text(
+                              '${user.name} (${user.role})',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold, // Bold title
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            subtitle: Text(
+                              'Email: ${user.email}',
+                              style: TextStyle(
+                                color:
+                                    Colors.grey[600], // Softer subtitle color
+                              ),
+                            ),
+                            trailing: Icon(Icons.arrow_forward_ios,
+                                size: 16.0), // Add an icon to the right
+                          ),
                         );
                       },
                     )

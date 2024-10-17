@@ -32,48 +32,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
     });
 
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('注册成功')));
-    Navigator.pop(context); // 返回登录页面
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('注册')),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: '姓名'),
+      appBar: AppBar(),
+      body: Column(
+        mainAxisSize: MainAxisSize
+            .min, // Ensures the column takes up only as much space as needed
+        children: [
+          // Image section
+          Container(
+            width: double.infinity, // Full width
+            height: 300, // Set a fixed height for the image
+            child: Image.asset(
+              '../assets/idk.jpg', // Replace with your image asset
+              fit: BoxFit.contain, // Ensures the image keeps its aspect ratio
             ),
-            TextField(
-              controller: emailController,
-              decoration: InputDecoration(labelText: '邮箱'),
+          ),
+
+          // Text section directly below the image
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "I dont have time to do this part okay",
+              style: TextStyle(
+                fontSize: 17, // Font size
+                fontWeight: FontWeight.bold, // Bold text
+              ),
+              textAlign: TextAlign.center, // Center the text
             ),
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(labelText: '密码'),
-              obscureText: true,
-            ),
-            DropdownButton<String>(
-              value: _selectedRole,
-              items: <String>['worker', 'admin']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedRole = newValue!;
-                });
-              },
-            ),
-            ElevatedButton(onPressed: _register, child: Text('注册')),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
