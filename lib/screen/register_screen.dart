@@ -20,6 +20,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
       name: nameController.text,
       email: emailController.text,
       role: _selectedRole,
+      checkedIn: false,
+      checkedOut: false,
+      curGoal: 40,
+      cropType: "Sugarcane",
+      incentive: 3.5,
     );
 
     setState(() {
@@ -53,7 +58,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             DropdownButton<String>(
               value: _selectedRole,
-              items: <String>['worker', 'admin'].map<DropdownMenuItem<String>>((String value) {
+              items: <String>['worker', 'admin']
+                  .map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
