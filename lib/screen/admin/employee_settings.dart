@@ -108,8 +108,12 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                     }).toList(),
                   ),
                 ),
-                SizedBox(width: 16), // Spacing between Dropdown and TextField
-                // Disabled TextField displaying the cost
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              children: [
+                // Expand the Dropdown to take available space
                 Expanded(
                   child: TextField(
                     controller: TextEditingController(
@@ -117,35 +121,6 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                     ),
                     decoration: InputDecoration(
                       labelText: 'Cost',
-                      labelStyle: TextStyle(
-                          color: const Color.fromARGB(
-                              255, 0, 0, 0)), // Brighter label color
-                      // Brighter label color
-                      border: OutlineInputBorder(),
-                      filled: true,
-                      fillColor: Colors.grey[200],
-                    ),
-                    style: TextStyle(
-                      color:
-                          Colors.black.withOpacity(0.7), // Brighter text color
-                    ),
-
-                    enabled: false, // Disables the TextField
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 40),
-            Row(
-              children: [
-                // Expand the Dropdown to take available space
-                Expanded(
-                  child: TextField(
-                    controller: TextEditingController(
-                      text: "${fakeData[selectedItem]?['goal']} kg",
-                    ),
-                    decoration: InputDecoration(
-                      labelText: 'Daily quota',
                       labelStyle: TextStyle(
                           color: const Color.fromARGB(
                               255, 0, 0, 0)), // Brighter label color
@@ -189,7 +164,7 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 ),
               ],
             ),
-            SizedBox(height: 40),
+            SizedBox(height: 20),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -216,6 +191,7 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 ),
               ],
             ),
+            SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 // Return the updated settings when the user clicks save
@@ -229,6 +205,7 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                 );
               },
               style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
                 backgroundColor: fakeData[selectedItem]?['profit']
                     ? const Color.fromARGB(255, 119, 237, 45)
                     : const Color.fromARGB(255, 201, 37,
@@ -238,7 +215,8 @@ class _EmployeeSettingsState extends State<EmployeeSettingsPage> {
                   horizontal: 24.0,
                 ),
               ),
-              child: Text('Save Changes'),
+              child:
+                  Text('Predicted quota: ${fakeData[selectedItem]?['goal']}'),
             ),
           ],
         ),
